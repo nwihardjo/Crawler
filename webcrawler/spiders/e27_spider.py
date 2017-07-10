@@ -107,11 +107,17 @@ class e27_spider(scrapy.Spider):
 		final_data['Logo-URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[1]/img/@src').extract_first()
 
 		final_data['Investors'], final_data['Funding Amount'], final_data['Funding Date'], final_data['Funding Round'] = ([] for _ in range(4))
+		
+		fundingNum = 1
 		for funding in response.xpath('//*[@id="funding_table"]/div'):
-			try:
-				final_data['Investors'].append(funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip())
-			except:
-				final_data['Investors'] = None
+			final_data['Funding '+str(fundingNum)] = {}
+			if not boolean(funding.xpath('/.div[1]/div/div[2]/small')):
+				try:
+					final_data['Funding '+str(fundingNum)]['Investors'].append(funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip())
+				except:
+					final_data['Funding '+str(fundingNum)]['Investors'] = None
+			else:
+				
 
 			final_data['Funding Round'].append(find_text(funding.xpath('./div[2]').extract_first()))
 			final_data['Funding Amount'].append(find_text(funding.xpath('./div[3]').extract_first()))
