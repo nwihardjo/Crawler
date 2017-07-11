@@ -56,13 +56,13 @@ def generate_startup_list():
 
 	return startupList
 
-class e27_spider(scrapy.Spider):
+class ausFintech_spider(scrapy.Spider):
 	count_fail = 0
 	count_succeed = 0
 	succeed_list = []
 	fail_list = []
-	name = 'aus_fintech'
-	base_url = ['https://e27.co/top100-fight-club-118-startups-pitching-20170623/']
+	name = 'ausFintech'
+	base_url = ['https://australianfintech.com.au/directory-all/']
 	# base_url = ['https://e27.co/top100-fight-club-20-more-startups-showcasing-echelon-asia-summit-20170612/']
 	# base_url = ['https://e27.co/top100-fight-club-another-20-startups-showcasing-echelon-asia-summit-176312/']
 	# base_url = ['https://e27.co/top100-fight-club-startups-pitching-echelon-asia-summit-176809/']
@@ -77,55 +77,54 @@ class e27_spider(scrapy.Spider):
 		fetch the requested url, and pass it to the callback, which is parse function
 		"""
 		for url in self.base_url:
-			yield SplashRequest(url = url, callback = self.parse1, args={'http_method': 'GET','follow_redirects':False})
+			yield SplashRequest(url = url, callback = self.parse, args={'http_method': 'GET','follow_redirects':False})
 		
 	def parse1(self,response):
-		for startup in response.xpath('//*[@id="article-container"]/article/div[4]/div/h3'):
-			if startup.xpath('./b/a/@href').extract_first():
-				yield SplashRequest(url = startup.xpath('./b/a/@href').extract_first(), callback=self.parse, args={'http_method': 'GET','follow_redirects': False})
+		with ('ausFintech.html', 'wb') as f:
+			f.write(response.body)
 
 	def parse(self, response):
 		"""
 		response: the fetched request received from start_requests
 		the function return a dictionary (set of data) that contains the profile of the startup
 		"""
-		final_data = {}
-		final_data['Name'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/h1/text()').extract_first()
-		final_data['Founding'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/p[3]/span/text()').extract_first()
-		final_data['Description'] = response.xpath('//*[@id="page-container"]/div[4]/div/div/div/div/div[1]/div[1]/div[1]/div/p/text()').extract_first()
-		final_data['Website URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/div[2]/span[1]/a/@href').extract_first()
-		final_data['Location'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/div[2]/span[3]/a/text()').extract_first()
+		# final_data = {}
+		# final_data['Name'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/h1/text()').extract_first()
+		# final_data['Founding'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/p[3]/span/text()').extract_first()
+		# final_data['Description'] = response.xpath('//*[@id="page-container"]/div[4]/div/div/div/div/div[1]/div[1]/div[1]/div/p/text()').extract_first()
+		# final_data['Website URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/div[2]/span[1]/a/@href').extract_first()
+		# final_data['Location'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/div[2]/span[3]/a/text()').extract_first()
 
-		final_data['Industry'] = []
-		for element in response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/div[3]/span/a'):
-			final_data['Industry'].append(element.xpath("./text()").extract_first())
+		# final_data['Industry'] = []
+		# for element in response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[1]/div/div[3]/span/a'):
+		# 	final_data['Industry'].append(element.xpath("./text()").extract_first())
 
-		final_data['Twitter'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[1]/@href').extract_first()
-		final_data['Facebook'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[2]/@href').extract_first()
-		final_data['Linkedin'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[3]/@href').extract_first()
-		final_data['Logo-URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[1]/img/@src').extract_first()
+		# final_data['Twitter'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[1]/@href').extract_first()
+		# final_data['Facebook'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[2]/@href').extract_first()
+		# final_data['Linkedin'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[3]/@href').extract_first()
+		# final_data['Logo-URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[1]/img/@src').extract_first()
 
-		final_data['Investors'], final_data['Funding Amount'], final_data['Funding Date'], final_data['Funding Round'] = ([] for _ in range(4))
-		for funding in response.xpath('//*[@id="funding_table"]/div'):
-			try:
-				final_data['Investors'].append(funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip())
-			except:
-				final_data['Investors'] = None
+		# final_data['Investors'], final_data['Funding Amount'], final_data['Funding Date'], final_data['Funding Round'] = ([] for _ in range(4))
+		# for funding in response.xpath('//*[@id="funding_table"]/div'):
+		# 	try:
+		# 		final_data['Investors'].append(funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip())
+		# 	except:
+		# 		final_data['Investors'] = None
 
-			final_data['Funding Round'].append(find_text(funding.xpath('./div[2]').extract_first()))
-			final_data['Funding Amount'].append(find_text(funding.xpath('./div[3]').extract_first()))
-			final_data['Funding Date'].append(find_date(funding.xpath('./div[4]').extract_first()))
+		# 	final_data['Funding Round'].append(find_text(funding.xpath('./div[2]').extract_first()))
+		# 	final_data['Funding Amount'].append(find_text(funding.xpath('./div[3]').extract_first()))
+		# 	final_data['Funding Date'].append(find_date(funding.xpath('./div[4]').extract_first()))
 
-		if final_data['Name'] == None:
-			self.count_fail += 1
-			self.fail_list.append(str(self.count_fail) + ': ' + response.url)
-		else: 
-			self.count_succeed += 1
-			self.succeed_list.append(str(self.count_succeed + ': ' + response.url))
+		# if final_data['Name'] == None:
+		# 	self.count_fail += 1
+		# 	self.fail_list.append(str(self.count_fail) + ': ' + response.url)
+		# else: 
+		# 	self.count_succeed += 1
+		# 	self.succeed_list.append(str(self.count_succeed + ': ' + response.url))
 
-		print('FAIL COUNT : ' + str(self.count_fail))
-		print("FAIL LIST: ", self.fail_list)
-		print('SUCCESS COUNT: ' + str(self.count_succeed))
-		print('SUCCESS LIST: ', self.succeed_list)
+		# print('FAIL COUNT : ' + str(self.count_fail))
+		# print("FAIL LIST: ", self.fail_list)
+		# print('SUCCESS COUNT: ' + str(self.count_succeed))
+		# print('SUCCESS LIST: ', self.succeed_list)
 
-		yield final_data
+		# yield final_data
