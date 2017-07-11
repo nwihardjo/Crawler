@@ -68,7 +68,7 @@ class e27_spider(scrapy.Spider):
 	# start_url = ['https://e27.co/top100-fight-club-another-20-startups-showcasing-echelon-asia-summit-176312/']
 	# start_url = ['https://e27.co/top100-fight-club-startups-pitching-echelon-asia-summit-176809/']
 	# start_url = ['https://e27.co/top100-fight-club-first-20-startups-showcasing-echelon-asia-summit-175474/']
-	start_url = ['https://e27.co/startup/flipkart']
+	start_url = ['https://e27.co/startup/uber']
 	def start_requests(self):
 		"""
 			the function make a request for each url in the start_urls list
@@ -106,33 +106,32 @@ class e27_spider(scrapy.Spider):
 		final_data['Facebook'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[2]/@href').extract_first()
 		final_data['Linkedin'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[3]/@href').extract_first()
 		final_data['Logo-URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[1]/img/@src').extract_first()
+		final_data['E27 Link'] = response.url
 
 		fundingNum = 1
 		for funding in response.xpath('//*[@id="funding_table"]/div'):
 			boolTemp  = True
 			try: 
-				for investor in funding.xpath('/.div[1]/div/div[2]/[@role="allInvestors"]/div/div/div[2]/div/div'):
-					final_data['Funding '+str(fundingNum)].append(investor.xpath('/.div[2]/span/a/text()'))
+				for investor in funding.xpath('/.div[1]/div/div[2]/div[2]/div/div/div[2]/div/div'):
+					final_data['Funding '+str(fundingNum)+' Investors'].append(investor.xpath('/.div[2]/span/a/text()')) 
 			except:
 				try:
-					final_data['Funding '+str(fundingNum)].append(funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip())
+					final_data['Funding '+str(fundingNum)+' Investors'] = funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip()
 				except:
-					final_data['Funding '+str(fundingNum)]['Investors'].append(None)
+					final_data['Funding '+str(fundingNum)+' Investors']= None
 
 			# 	try:
 			# 		final_data['Funding '+str(fundingNum)]['Investors'] = funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip()
 			# 	except:
-			# 		final_data['Funding '+str(fundingNum)]['Investors'] = non-alphanumeric
+			# 		final_data['Funding '+str(fundingNum)]['Investors'] = None
 			# else:
 			# 	for investor in funding.xpath('/.div[1]/div/div[2]/div[2]/div/div/div[2]/div/div'):
 			# 		final_data['Funding '+str(fundingNum)]['Investors'] = investor.xpath('/.div[2]/span/a/text()') 
 
-			final_data['Funding '+str(fundingNum)]['Funding Round'].append(find_text(funding.xpath('./div[2]').extract_first()))
-			final_data['Funding '+str(fundingNum)]['Funding Amount'].append(find_text(funding.xpath('./div[3]').extract_first()))
-			final_data['Funding '+str(fundingNum)]['Funding Date'].append(find_date(funding.xpath('./div[4]').extract_first()))
+			final_data['Funding '+str(fundingNum)+' Funding Round'] = find_text(funding.xpath('./div[2]').extract_first())
+			final_data['Funding '+str(fundingNum)+' Funding Amount'] = find_text(funding.xpath('./div[3]').extract_first())
+			final_data['Funding '+str(fundingNum)+' Funding Date'] = find_date(funding.xpath('./div[4]').extract_first())
 			fundingNum += 1
-
-		final_data['E27 Link'] = response.url
 
 		if final_data['Name'] == None:
 			self.count_fail += 1
@@ -147,8 +146,3 @@ class e27_spider(scrapy.Spider):
 		print('SUCCESS LIST: ', self.succeed_list)
 
 		yield final_data
-		
-		with open('testing.html', 'wb') as f:
-			f.write(response.body)
-		# with open('testingcode.txt','wb') as f:
-		# 	f.write(response.text)
