@@ -1,0 +1,534 @@
+<!DOCTYPE html><html class=" js flexbox flexboxlegacy canvas canvastext webgl touch no-geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent no-video no-audio no-localstorage no-sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head>
+	<link rel="shortcut icon" type="image/png" href="https://d2n91hbqyoc1c7.cloudfront.net/img/logo-png.png">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="india investors, india business, venture capital, looking for investment, find an investor, entrepreneur, angel investors, business funds, business angels, angel investors, business angel india, private investment">
+	<link rel="shortcut icon" type="image/png" href="https://d2n91hbqyoc1c7.cloudfront.net/img/logo-png.png">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/style_v3.css"> -->
+	
+	<!-- <link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/style_v2.css"> -->
+	<link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/style_v3.css">
+	<!-- <link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/style3.css"> -->
+	<link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/media.css">
+	<link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/carousel.css">
+	
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/bootstrap-datepicker/css/datepicker3.css">
+	<link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/bootstrap-datepicker/css/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/select2/select2.css">
+	<link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/zabuto_calendar.min.css">
+<!--	<link rel="stylesheet" href="https://d2n91hbqyoc1c7.cloudfront.net/django_tables2/themes/paleblue/css/screen.css" />-->
+        <link rel="stylesheet" type="text/css" href="https://d2n91hbqyoc1c7.cloudfront.net/css/screen.css">
+
+	<style>
+		#map_canvas {
+			width: 100%;
+			height: 250px;
+			background-color: #CCC;
+		}
+	</style>
+	
+			
+	
+    <title>
+	Portfolios
+</title>    
+<style>.cke{visibility:hidden;}</style></head>
+
+<body>
+	<div class="loader" style="opacity: 1;"></div>
+	
+		
+			
+
+<header>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">	
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>                                         
+				<a class="navbar-brand" href="/"><img src="https://d2n91hbqyoc1c7.cloudfront.net/img/logo.png" class="ian-logo">
+				</a>
+				<ul class="hide-block-lg">
+					<li>
+						<span class="login-signup-container" style="margin-top:21px !important; margin-right:10px;">
+							<a href="/accounts/login/?main_login=True" class="btn btn-danger" data-toggle="modal" data-target=".login">Login</a> 
+						</span> 
+					</li>
+				</ul>
+			</div>
+			
+			<style type="text/css">
+				.navbar-collapse.in {
+				    overflow-y: scroll;
+				    height:350px;
+				}
+			</style>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Investors<span class="caret"></span></a>
+						<ul class="dropdown-menu home-sub-menu">
+							<li>
+								<div class="row wrks">
+									<ul class="list-unstyled col-md-6">
+										<li class="dropdown-header">Meet Our Angels</li>
+										<li><a class="" href="/individual-members">Individual Members </a></li>
+
+										<li><a class="" href="/institutional-members">Institutional Members</a></li>
+										<li class="works"><a class="" href="/how-it-works" style="font-size:16px;">How It Works</a></li>
+									</ul>
+									<ul class="list-unstyled col-md-6">
+										<li class="dropdown-header">Operating Framework</li>
+										<li><a class="" href="/operating-framework">Operating Framework</a></li>
+										<li><a class="" href="/management-committee">Management Committee</a></li>
+										<li><a class="" href="/secretariat">Secretariat</a></li>
+										<!--<li><a class="" href=/deal-flow>Deal Flow</a></li>
+										<li><a class="" href="#">Investment Decisions</a></li>
+										<li><a class="" href=/mentoring>Mentoring</a></li>-->
+								<!-- CR - remove the Membership fee tab from website - 3-Feb-2017 through mail ...
+								
+										<li><a class="" href=/membership-fee>Membership Fee</a></li> -->
+									</ul>
+								</div>
+							</li>		
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Entrepreneurs<span class="caret"></span></a>
+						<ul class="dropdown-menu menu-list-items">
+
+							<li><a class="" href="/why-the-network">Why The Network</a></li>
+							<li><a class="" href="/guidelines">Prepare For Investor Discussion</a>
+							</li><li><a class="" href="/knowledge-repository">Knowledge Repository</a></li>							
+							<li><a class="" href="/dashboard/submit-new-plan">Submit Your Plan</a></li>
+							<li><a class="" href="/faqs">FAQs</a></li>
+
+						</ul>
+					</li> 
+					<li><a class="active" href="/portfolios">Portfolios</a></li>
+
+					<li><a class="" href="/about">About</a></li>
+
+					<li id="partner"><a class="" href="/partners">Partners</a></li>
+
+					<li><a class="" href="/careers">Careers</a></li>
+
+					<li><a class="" href="/contact">Contact</a></li>
+					<li class="hide-block-xs">
+						<span class="login-signup-container">
+							<a href="/accounts/login/?main_login=True" class="btn btn-danger" data-toggle="modal" data-target=".login">Login</a>
+						</span>
+					</li>
+				</ul>
+			</div>
+			
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	<style type="text/css">
+		header .login-signup-container {
+  			float: right !important;
+  			margin-top: 5px !important;
+		}
+	</style>
+</header>
+
+		
+	
+
+	<!-- Modal -->
+	<!--=======================Small modal =================================-->
+	<div class="modal fade login" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	    <div class="modal-dialog cust-modal-sm">
+	        <div class="modal-content" id="loginmodalcontent">
+	        	<i class="fa fa-repeat"></i>
+	        </div>
+	        	<!--/modal-content-->
+		</div>
+	       <!--/modal-dialog-->
+	</div>
+	<!--/modal-->
+	<!--=======================/Small modal =================================-->
+
+    
+<div class="modal fade portfolio-details" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg portfolio-details-modal" id="portfoliooverlay">
+		</div>
+	</div>
+<!--=====================CONTENT START HERE==============================-->
+<style type="text/css">
+.content .portfolio-sector .nav .box:hover{
+	-webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+.content .portfolio-sector .nav .box{
+	width: 70px;
+	  
+}
+.content .portfolio-sector .nav .box span{
+	margin-left: 15px ;
+}
+</style>
+<section class="container">
+	<div class="content">
+		<div class="portfolio-sector">
+			<div class="row">
+				<div class="col-sm-2" style="height:auto !important;">
+					<h1>Portfolios</h1>
+					<ul class="nav nav-stacked">
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/15" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/df/94/df94eacaa7b35504419bf7d3a02e7094.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Agritech</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/17" data-toggle="collapse" class="accordion">
+								
+								<span>AI-ML-M2M</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/1" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/c1/58/c1589c0f323621b1331cfb074a0c0559.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>B2C-Consumer</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/18" data-toggle="collapse" class="accordion">
+								
+								<span>Deep Tech</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/19" data-toggle="collapse" class="accordion">
+								
+								<span>Devices-Electronics-Robotics</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/2" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/90/ae/90ae7e93fd2877678da556737c8f853f.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Education</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/20" data-toggle="collapse" class="accordion">
+								
+								<span>Energy-Resources-Waste</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/7" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/e3/98/e3982ae0d399fea828130fb1430dc641.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Enterprise Solutions-Analytics</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/3" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/68/bb/68bb4792b6074746b8126f21d3d97392.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Financial Services</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/6" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/1f/d3/1fd3befba15d2979a7fc6b34fa64243f.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Food and Hospitality</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/5" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/37/b0/37b06325ffeac686d78b2aba15d37b97.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>HealthCare</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/21" data-toggle="collapse" class="accordion">
+								
+								<span>HR</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/22" data-toggle="collapse" class="accordion">
+								
+								<span>Infrastructure-Security</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/8" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/60/e5/60e510378c005d5d95191302fe1fa393.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Internet</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/23" data-toggle="collapse" class="accordion">
+								
+								<span>Life Science-Pharma</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/24" data-toggle="collapse" class="accordion">
+								
+								<span>Logistics-Mobility</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/10" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/09/e5/09e5d66f8a7c0b38482102894f86539a.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Manufacturing-Engineering</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/4" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/dc/1e/dc1ed9ef48a7e2925b11480bdb629278.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Media,Entertainment,Advertising</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/11" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/8f/80/8f8054a10ac01c985fa2e9df004a9549.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Mobile</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/28" data-toggle="collapse" class="accordion">
+								
+								<span>Other</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/25" data-toggle="collapse" class="accordion">
+								
+								<span>Real Estate</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/13" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/42/fa/42faa72a8b926f641f6cb1f49c0d94cb.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Service</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/14" data-toggle="collapse" class="accordion">
+								
+								<img src="https://ianstorage.s3.amazonaws.com/ianCache/dc/70/dc70db14dade761dce0a1a3d0aa9b803.png" alt="Portfolio Logo" title="" class="img-responsive">
+								
+								<span>Social-Impact</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/26" data-toggle="collapse" class="accordion">
+								
+								<span>Telecom</span>
+							</a>
+						</figure></li>
+						
+						<li class="ac"><figure class="box">
+							<a href="" data-id="/portfolios/sector/27" data-toggle="collapse" class="accordion">
+								
+								<span>Travel</span>
+							</a>
+						</figure></li>
+						
+					</ul>
+				</div>
+				<div class="col-sm-9" id="sector_value" style="height:auto !important;min-height:100%; margin-left:60px;">
+					<div class="portfolio">
+						<div class="row tt">
+							<div class="btm">
+							
+							
+							<img src="https://ianstorage.s3.amazonaws.com/ianCache/58/c2/58c2bcc559035bcd25ff3bbea4eef720.png" alt="Portfolio Logo" title="" class="img-responsive">
+							
+							<h3>Agritech</h3>
+						
+						   </div>
+						</div>
+						<div class="row pp">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+    
+    	<!--=====================FOOTER SECTION START HERE==============================-->
+		<footer>
+		    <div class="container">
+		    	<div class="footer_nav text-center">
+					<ul>
+						<li><a href="/individual-members">Investors</a></li>
+						<li><a href="/dashboard/submit-new-plan">Entrepreneurs</a></li>
+						<li class="active"><a href="/portfolios">Portfolios</a></li>
+				<!--		<li><a href="http://www.indianangelnetwork.com/incubator">Get Incubated</a></li>  Hide link on request -->
+						<li><a href="/about">About</a></li>	
+						<li><a href="/partners">Partners</a></li>
+						<li><a href="/careers">Careers</a></li>
+						<li><a href="/contact">Contact</a></li>
+					</ul>
+				</div>
+				<div class="socil_section text-center">
+					<a href="https://plus.google.com" class="gplus" target="_blank"></a>
+			   	    <a href="https://www.linkedin.com/company/indian-angel-network?trk=tyah&amp;trkInfo=tarId%3A1405059515469%2Ctas%3Aindian+angel%2Cidx%3A2-1-4/" class="linkedin" target="_blank"></a>
+			   	    <a href="https://twitter.com/ianetwork" class="twitter" target="_blank"></a>
+			   	    <a href="https://www.facebook.com/indianangelnetwork?ref=hl/" class="facebook" target="_blank"></a>
+				</div>
+		    </div><!--/container-->
+		</footer>
+		<script>
+		// window.HFCHAT_CONFIG = {
+		// 	EMBED_TOKEN: "e6adecc0-6b4d-11e5-a227-09770e9e0d7c",
+		// 	ACCESS_TOKEN: "081d29d5680e4786aa2b5fa8bc698d38",
+		// 	HOST_URL: "https://www.happyfoxchat.com",
+		// 	ASSETS_URL: "https://d1l7z5ofrj6ab8.cloudfront.net/visitor"
+		// };
+
+		// (function() {
+		//  var scriptTag = document.createElement('script');
+		//  scriptTag.type = 'text/javascript';
+		//  scriptTag.async = true;
+		//  scriptTag.src = window.HFCHAT_CONFIG.ASSETS_URL + '/js/widget-loader.js';
+
+		//  var s = document.getElementsByTagName('script')[0];
+		//  s.parentNode.insertBefore(scriptTag, s);
+		// })();
+		</script>
+		  <!--=====================FOOTER SECTION END HERE==============================-->
+    
+
+    
+    	<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/modernizr/modernizr.js"></script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/js/moment.js">
+		</script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js">
+		</script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/js/jquery-dateFormat.min.js"></script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/select2/select2.min.js">
+		</script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/zabuto_calendar.min.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/pagination.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/jquery.cookie.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/format_date_time.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/jquery-ui.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/jquery.iframe-transport.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/jquery.fileupload.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/upload_v1.js"></script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/ian-util.js"></script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js">
+		</script>
+		<script type="text/javascript" src="https://d2n91hbqyoc1c7.cloudfront.net/bower_components/ckeditor_new/ckeditor.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			var set_timezone = "/timezone";
+			function getCookie(name) {
+			    var cookieValue = null;
+			    if (document.cookie && document.cookie != '') {
+			        var cookies = document.cookie.split(';');
+			        for (var i = 0; i < cookies.length; i++) {
+			            var cookie = jQuery.trim(cookies[i]);
+				            // Does this cookie string begin with the name we want?
+			            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			                break;
+			            }
+			        }
+			    }
+			    return cookieValue;
+			};
+
+			var csrftoken = getCookie('csrftoken');
+
+			$( document ).ajaxSend(function( event, jqXHR, ajaxOptions) {
+				jqXHR.setRequestHeader("X-CSRFToken", csrftoken);
+			});
+		</script>
+		<script src="https://d2n91hbqyoc1c7.cloudfront.net/js/set_timezone.js"></script>
+		
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.accordion').on('click', function(){
+		$.ajax({
+			url: $(this).attr('data-id'),
+			type: "get",
+			success: function(data) {
+				$('#sector_value').html(data);
+				$('html, body').animate({ scrollTop: 0 }, 0);
+			}
+		})
+	});
+});
+$('a.portfoliomodal').click(function(){
+	$('#portfoliooverlay').load($(this).attr('url'));
+});
+</script>
+
+    
+
+
+</body></html>
