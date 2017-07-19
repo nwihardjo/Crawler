@@ -75,7 +75,7 @@ class e27_spider(scrapy.Spider):
 		"""
 		for url in self.start_url:
 			yield SplashRequest(url = url, callback = self.parse1, args={'http_method': 'GET','follow_redirects':False})
-		
+
 	def parse1(self,response):
 		print("DEBUG: ENTERING PARSE1 AWAL FUNC")
 		for startup in response.xpath('//*[@id="article-container"]/article/div[4]/div/h3'):
@@ -107,7 +107,7 @@ class e27_spider(scrapy.Spider):
 		final_data['Logo-URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[1]/img/@src').extract_first()
 
 		final_data['Investors'], final_data['Funding Amount'], final_data['Funding Date'], final_data['Funding Round'] = ([] for _ in range(4))
-		
+
 		fundingNum = 1
 		for funding in response.xpath('//*[@id="funding_table"]/div'):
 			final_data['Funding '+str(fundingNum)] = {}
@@ -117,16 +117,17 @@ class e27_spider(scrapy.Spider):
 				except:
 					final_data['Funding '+str(fundingNum)]['Investors'] = None
 			else:
-				
+				for investors in funding.xpath('')
 
-			final_data['Funding Round'].append(find_text(funding.xpath('./div[2]').extract_first()))
-			final_data['Funding Amount'].append(find_text(funding.xpath('./div[3]').extract_first()))
-			final_data['Funding Date'].append(find_date(funding.xpath('./div[4]').extract_first()))
+
+			final_data['Funding '+str(fundingNum)]['Funding Round'].append(find_text(funding.xpath('./div[2]').extract_first()))
+			final_data['Funding '+str(fundingNum)]['Funding Amount'].append(find_text(funding.xpath('./div[3]').extract_first()))
+			final_data['Funding '+str(fundingNum)]['Funding Date'].append(find_date(funding.xpath('./div[4]').extract_first()))
 
 		if final_data['Name'] == None:
 			self.count_fail += 1
 			self.fail_list.append((str(self.count_fail) + ': ' + response.url))
-		else: 
+		else:
 			self.count_succeed += 1
 			self.succeed_list.append((str(self.count_succeed) + ': ' + final_data['Name']))
 
