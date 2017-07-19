@@ -80,7 +80,6 @@ class e27_spider(scrapy.Spider):
 	def parse1(self,response):
 		print("DEBUG: ENTERING PARSE1 AWAL FUNC")
 		for startup in response.xpath('//*[@id="article-container"]/article/div[4]/div/h3'):
-			# if startup.xpath('./b/a/@href'):
 			print("DEBUG: ENTERING PARSE1 BEG FUNC")
 			yield SplashRequest(url = startup.xpath('./b/a/@href').extract_first(), callback=self.parse, args={'http_method': 'GET','follow_redirects': False})
 			print("DEBUG: ENTERING PARSE1 FUNC")
