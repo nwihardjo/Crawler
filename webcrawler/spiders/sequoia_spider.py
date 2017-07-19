@@ -8,7 +8,7 @@ class sequoia_spider(scrapy.Spider):
 
 	name = 'sequoia'
 	start_url = ['https://www.sequoiacap.com/india/companies/']
-	
+
 	def start_requests(self):
 		"""
 			the function make a request for each url in the start_urls list
@@ -24,10 +24,10 @@ class sequoia_spider(scrapy.Spider):
 
 			r = requests.get(startup_url)
 			soup = BeautifulSoup(r.text, 'html.parser')
-			
+
 			final_data = {}
 			final_data['Startup Name'] = soup.find('div', class_ = '_title -large-title js-panel-name').get_text().lstrip().rstrip()
-			
+
 			links = soup.find_all('a',class_ = 'social-link')
 			for link in soup.find_all('a', class_ = 'social-link'):
 				if 'Website' in link['onclick']:
@@ -36,12 +36,6 @@ class sequoia_spider(scrapy.Spider):
 					final_data['Twitter URL'] = link['href']
 				elif 'LinkedIn' in link['onclick']:
 					final_data['LinkedIn URL'] = link['href']
-			try: final_data['Startup URL']
-			except: final_data['Startup URL'] = None
-			try: final_data['Twitter URL']
-			except: final_data['Twitter URL'] = None
-			try: final_data['LinkedIn URL']
-			except: final_data['LinkedIn URL'] = None
 
 			final_data['Logo URL'] = soup.find('div', class_ = 'company-holder _logo').find('img')['src']
 			try:

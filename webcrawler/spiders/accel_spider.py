@@ -1,4 +1,4 @@
-
+from pprint import pprint
 import json
 import requests
 
@@ -10,3 +10,13 @@ if not response.status_code == 200:
 
 data = response.json()
 print('NUMBER OF STARTUP:', len(data['data']['data']['objects']))
+
+count = 0
+for startup in data['data']['data']['objects']:
+	try:
+		if startup['regions'][0]['name'] == 'India':
+			final_data = {}
+			try: final_data['Startup Name'] = startup['name']
+			except:
+	except:
+		continue
