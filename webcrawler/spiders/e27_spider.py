@@ -1,6 +1,7 @@
 import scrapy
 from scrapy_splash import SplashRequest
 import csv
+import lxml.html as PARSER
 
 def find_text(xpath_value):
 	return str(xpath_value).split()[-2]
@@ -66,28 +67,32 @@ class e27_spider(scrapy.Spider):
 	# start_url = ['https://e27.co/top100-fight-club-20-more-startups-showcasing-echelon-asia-summit-20170612/']
 	# start_url = ['https://e27.co/top100-fight-club-another-20-startups-showcasing-echelon-asia-summit-176312/']
 	# start_url = ['https://e27.co/top100-fight-club-startups-pitching-echelon-asia-summit-176809/']
-	start_url = ['https://e27.co/top100-fight-club-first-20-startups-showcasing-echelon-asia-summit-175474/']
-	# start_url = ['https://e27.co/startup/tigercompany','https://e27.co/startup/spareparts3d']
+	# start_url = ['https://e27.co/top100-fight-club-first-20-startups-showcasing-echelon-asia-summit-175474/']
+	start_url = ['https://e27.co/startup/uber']
 	def start_requests(self):
 		"""
-		the function make a request for each url in the start_urls list
-		fetch the requested url, and pass it to the callback, which is parse function
+			the function make a request for each url in the start_urls list
+			fetch the requested url, and pass it to the callback, which is parse function
 		"""
 		for url in self.start_url:
+<<<<<<< HEAD
 			yield SplashRequest(url = url, callback = self.parse1, args={'http_method': 'GET','follow_redirects':False})
 
+=======
+			yield SplashRequest(url = url, callback = self.parse, args={'http_method': 'GET','follow_redirects':False})
+		
+>>>>>>> 494ddf4faa173ae11ca9a599f0aac7bf412693c4
 	def parse1(self,response):
 		print("DEBUG: ENTERING PARSE1 AWAL FUNC")
 		for startup in response.xpath('//*[@id="article-container"]/article/div[4]/div/h3'):
-			# if startup.xpath('./b/a/@href'):
 			print("DEBUG: ENTERING PARSE1 BEG FUNC")
 			yield SplashRequest(url = startup.xpath('./b/a/@href').extract_first(), callback=self.parse, args={'http_method': 'GET','follow_redirects': False})
 			print("DEBUG: ENTERING PARSE1 FUNC")
 
 	def parse(self, response):
 		"""
-		response: the fetched request received from start_requests
-		the function return a dictionary (set of data) that contains the profile of the startup
+			response: the fetched request received from start_requests
+			the function return a dictionary (set of data) that contains the profile of the startup
 		"""
 		print("DEBUG: ENTERING PARSE FUNC")
 		final_data = {}
@@ -105,16 +110,24 @@ class e27_spider(scrapy.Spider):
 		final_data['Facebook'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[2]/@href').extract_first()
 		final_data['Linkedin'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/a[3]/@href').extract_first()
 		final_data['Logo-URL'] = response.xpath('//*[@id="page-container"]/div[3]/div/div/div/div/div/div[1]/img/@src').extract_first()
+		final_data['E27 Link'] = response.url
 
+<<<<<<< HEAD
 		final_data['Investors'], final_data['Funding Amount'], final_data['Funding Date'], final_data['Funding Round'] = ([] for _ in range(4))
 
+=======
+>>>>>>> 494ddf4faa173ae11ca9a599f0aac7bf412693c4
 		fundingNum = 1
 		for funding in response.xpath('//*[@id="funding_table"]/div'):
-			final_data['Funding '+str(fundingNum)] = {}
-			if not boolean(funding.xpath('/.div[1]/div/div[2]/small')):
+			boolTemp  = True
+			try: 
+				for investor in funding.xpath('/.div[1]/div/div[2]/div[2]/div/div/div[2]/div/div'):
+					final_data['Funding '+str(fundingNum)+' Investors'].append(investor.xpath('/.div[2]/span/a/text()')) 
+			except:
 				try:
-					final_data['Funding '+str(fundingNum)]['Investors'].append(funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip())
+					final_data['Funding '+str(fundingNum)+' Investors'] = funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip()
 				except:
+<<<<<<< HEAD
 					final_data['Funding '+str(fundingNum)]['Investors'] = None
 			else:
 				for investors in funding.xpath('')
@@ -123,6 +136,22 @@ class e27_spider(scrapy.Spider):
 			final_data['Funding '+str(fundingNum)]['Funding Round'].append(find_text(funding.xpath('./div[2]').extract_first()))
 			final_data['Funding '+str(fundingNum)]['Funding Amount'].append(find_text(funding.xpath('./div[3]').extract_first()))
 			final_data['Funding '+str(fundingNum)]['Funding Date'].append(find_date(funding.xpath('./div[4]').extract_first()))
+=======
+					final_data['Funding '+str(fundingNum)+' Investors']= None
+
+			# 	try:
+			# 		final_data['Funding '+str(fundingNum)]['Investors'] = funding.xpath('./div[1]/div/div[2]/div/a/text()').extract_first().lstrip().rstrip()
+			# 	except:
+			# 		final_data['Funding '+str(fundingNum)]['Investors'] = None
+			# else:
+			# 	for investor in funding.xpath('/.div[1]/div/div[2]/div[2]/div/div/div[2]/div/div'):
+			# 		final_data['Funding '+str(fundingNum)]['Investors'] = investor.xpath('/.div[2]/span/a/text()') 
+
+			final_data['Funding '+str(fundingNum)+' Funding Round'] = find_text(funding.xpath('./div[2]').extract_first())
+			final_data['Funding '+str(fundingNum)+' Funding Amount'] = find_text(funding.xpath('./div[3]').extract_first())
+			final_data['Funding '+str(fundingNum)+' Funding Date'] = find_date(funding.xpath('./div[4]').extract_first())
+			fundingNum += 1
+>>>>>>> 494ddf4faa173ae11ca9a599f0aac7bf412693c4
 
 		if final_data['Name'] == None:
 			self.count_fail += 1
