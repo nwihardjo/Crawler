@@ -5,7 +5,7 @@ class mumbai_spider(scrapy.Spider):
 
 	name = 'mumbai'
 	start_url = ['http://www.mumbaiangels.com/ma_portfolio_view_all.php']
-	base_url = 'htttp://www.mumbaiangels.com'
+	base_url = 'http://www.mumbaiangels.com/'
 
 	def start_requests(self):
 		"""
@@ -20,10 +20,12 @@ class mumbai_spider(scrapy.Spider):
 			response: the fetched request received from start_requests
 			the function return a dictionary (set of data) that contains the profile of the startup
 		"""
+		print('DEBUG: NOW AT PAGE: ', response.xpath('//*[@id="maincontent"]/table/tbody/tr[9]/td/table/tbody/tr/td[3]/span/strong').extract_first())
+		
 		indexLevel1 = 0
 		for row in response.xpath('//*[@id="maincontent"]/table/tbody/tr'):
 			indexLevel1 += 1
-			if indexLevel1 == 1 or indexLevel1 % 2 == 0:
+			if indexLevel1 == 1 or indexLevel1 % 2 == 0 or indexLevel1 == 9:
 				continue
 
 			indexLevel2 = 0
@@ -31,12 +33,9 @@ class mumbai_spider(scrapy.Spider):
 				indexLevel2 += 1
 				if indexLevel2 % 2 == 0:
 					continue
-
-				print("DEBUG: ENTERING FIRST ROW")
-				start_url = self.base_url + startup.xpath('./a/@href').extract_first()
-				
+								
 				if startup.xpath('./a/@href').extract_first() is not None:
-					print('DEBUG: ENTERING STARTUP PROFILE', startup.xpath('./a/@href').extract_first())
+					start_url = self.base_url + startup.xpath('./a/@href').extract_first()
 					yield SplashRequest(url = start_url, callback = self.parse_startup)
 
 		###		Follow the next page	###
@@ -49,8 +48,17 @@ class mumbai_spider(scrapy.Spider):
 		name_list = response.url.split('_')
 		name_list[-1] = name_list[-1].split('.')[0]
 		final_data['Startup Name'] = ' '.join(name_list[3:])
+
+		print('DEBUG: PARSING:', final_data['Startup Name'])
+
 		final_data['Startup URL'] = response.xpath('//*[@id="maincontent"]/table/tbody/tr[4]/td/p[3]/a/@href').extract_first()
-		final_data['Logo URL'] = response.xpath('//*[@id="maincontent"]/table/tbody/tr[3]/td/p/img/@src').extract_first()
+		
+		if response.xpath('//*[@id="maincontent"]/table/tbody/tr[3]/td/p/a/img/@src').extract_first() is not None:
+			final_data['Logo URL'] = self.base_url + response.xpath('//*[@id="maincontent"]/table/tbody/tr[3]/td/p/a/img/@src').extract_first()
+		elif response.xpath('//*[@id="maincontent"]/table/tbody/tr[3]/td/p/img/@src').extract_first() is not None:
+			final_data['Logo URL'] = self.base_url + response.xpath('//*[@id="maincontent"]/table/tbody/tr[3]/td/p/img/@src').extract_first()
+
+
 		final_data['Description'] = response.xpath('//*[@id="maincontent"]/table/tbody/tr[4]/td/p[1]/text()').extract_first()
 		final_data['Industry'] = response.xpath('//*[@id="maincontent"]/table/tbody/tr[2]/td/span/text()').extract_first()
 
