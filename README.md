@@ -1,5 +1,5 @@
 # Crawler
-Automatically scrape startup-related data from startup-database website
+Automatically scrape startup-related data from startup-database website utilising scrapy-splash website
 
 ## Features
 - Extract startups funding information
@@ -13,3 +13,7 @@ Automatically scrape startup-related data from startup-database website
   - scrapy-splash
   - scrap
   
+  ## Getting the crawled data:
+  All data is stored in it's responding database website's name in the csv file
+  
+Installing guide for scrapy-splash can be found [here](https://github.com/scrapy-plugins/scrapy-splash)
